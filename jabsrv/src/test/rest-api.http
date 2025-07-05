@@ -35,13 +35,41 @@ Accept: application/json
 GET http://localhost:23119/libraries/demo
 Accept: application/x-bibtex
 
-### Get CSL JSON of Chocolate.bib
+### Get list of files in Chocolate.bib
 
-// if you have checkout the JabRef code at c:\git-repositories\jabref, then this
-// will show the contents of your first opened library using CSL JSON
+GET http://localhost:23119/libraries/demo/entries/pdffiles
+Accept: application/json
+
+### Get CSL JSON of Chocolate.bib
 
 GET http://localhost:23119/libraries/demo
 Accept: application/x-bibtex-library-csl+json
+
+### Read demo JabMap
+
+GET http://localhost:23119/libraries/demo/map
+Accept: application/json
+
+### Save demo JabMap
+
+PUT http://localhost:23119/libraries/demo/map
+Content-Type: application/json
+
+{
+  "name": "demo"
+}
+
+### Get entry preview for "Tokede_2011" of demo library
+GET http://localhost:23119/libraries/demo/entries/Tokede_2011
+Accept: text/html
+
+### Get entry preview string for "Corti_2009" of chocolate.bib
+GET http://localhost:23119/libraries/Chocolate.bib-13af3778/entries/Corti_2009
+Accept: text/plain
+
+### Get text view for "Tokede_2011" of demo library
+GET http://localhost:23119/libraries/demo/entries/Tokede_2011
+Accept: text/plain
 
 ## From here: C:\git-repositories\JabRef\jablib\src\main\resources\Chocolate.bib is required
 
@@ -57,7 +85,7 @@ Accept: application/json
 
 ### Get CSL JSON of C:\git-repositories\JabRef\jablib\src\main\resources\Chocolate.bib
 
-// if you have checkout the JabRef code at c:\git-repositories\jabref, then this
+// if you have checked out the JabRef code at c:\git-repositories\jabref, then this
 // will show the contents of your first opened library using CSL JSON
 
 GET http://localhost:23119/libraries/Chocolate.bib-6a732609
@@ -65,6 +93,6 @@ Accept: application/x-bibtex-library-csl+json
 
 ## Error cases
 
-### GET not avaialble library
+### GET not available library
 
 GET http://localhost:23119/libraries/notfound
